@@ -46,6 +46,18 @@
  * @return {number}
  */
 var reverse = function(x) {
-    
+    const xAry = [];
+    const symbol = x >= 0 ? '' : '-';
+    for(let i = 0; i < Math.abs(x).toString().length; i++) {
+        xAry.push(Math.abs(x).toString().charAt(i));
+    }
+    const num = parseInt(symbol + xAry.reverse().join(',').replace(/,/g, ''));
+    return isOverflow(num) ? 0 : num;
 };
 
+function isOverflow(num) {
+    if (num > -Math.pow(2, 31) && num < Math.pow(2, 31) - 1) {
+        return false;
+    }
+    return true;
+}
